@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>DAO - Musiker & Instrumente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            color: #333;
+            margin: 0;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background: #ececec;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        a.heading-link {
+            color: #007acc;
+            text-decoration: none;
+        }
+
+        a.heading-link:hover {
+            text-decoration: underline;
+        }
+
+        .nft-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .nft-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .nft-card:hover {
+            transform: scale(1.02);
+        }
+
+        .nft-card img {
+            width: 100%;
+            display: block;
+        }
+
+        .nft-card-content {
+            padding: 15px;
+        }
+
+        .nft-tier {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .nft-relationship {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .nft-description {
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .tier-green { background: #d8f3dc; border-bottom: 2px solid #95d5b2; }
+        .tier-blue { background: #dbeafe; border-bottom: 2px solid #93c5fd; }
+        .tier-gold { background: #fff7cd; border-bottom: 2px solid #ffe669; }
+        .tier-rainbow { background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); color: #fff; border-bottom: 2px solid #ffffff; }
+
+        .hidden-text {
+            display: none;
+            padding: 15px;
+            font-size: 0.9em;
+            background: #fafafa;
+            border-top: 1px solid #ddd;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DAO - Musiker & Instrumente</h1>
+    </header>
+
+    <div class="content">
+        <h2><a class="heading-link" href="philosophie.html" target="_blank">Philosophie und Idee</a></h2>
+        <p class="highlight">
+            Im Mittelpunkt steht die einzigartige Beziehung zwischen Musiker und Instrument. Das NFT bildet genau diese Verbindung ab – weder rein ontologisch noch rein phänomenologisch, sondern als lebendige Fusion beider Ebenen.
+        </p>
+
+        <h3><a class="heading-link" href="nfts.html" target="_blank">Die NFTs</a></h3>
+        <ul>
+            <li>Tier 1: Hobbymusiker (Grün)</li>
+            <li>Tier 2: Professionelle Musiker (Blau)</li>
+            <li>Tier 3: Bekannte Musiker (Gold)</li>
+            <li>Superstars (Regenbogenfarben)</li>
+        </ul>
+
+        <h3><a class="heading-link" href="beziehung.html" target="_blank">Beziehung zum Instrument</a></h3>
+        <ul>
+            <li>Mittel zum Zweck (Grau)</li>
+            <li>Haustier (Orange)</li>
+            <li>Bester Freund (Blau)</li>
+            <li>Lebenspartner (Rot)</li>
+        </ul>
+
+        <h3><a class="heading-link" href="funktionen.html" target="_blank">Funktionen der NFTs</a></h3>
+        <p>
+            Jedes NFT dient als Schlüssel zu exklusiven Inhalten wie Audiodateien, Videos oder Interviews, die im Laufe der Zeit erweitert werden.
+        </p>
+        
+        <h3><a class="heading-link" href="ziele.html" target="_blank">Ziele und Community</a></h3>
+        <p>
+            Das DAO unterstützt musikalische Bildung, fördert kulturelle Vielfalt und lädt die Community zum Sammeln und Handeln ein.
+        </p>
+        
+        <h3><a class="heading-link" href="technik.html" target="_blank">Technische Umsetzung</a></h3>
+        <p>
+            Cardano-Blockchain, Smart Contracts und IPFS sorgen für Transparenz und einfache Bedienung, selbst für Einsteiger.
+        </p>
+
+        <h3><a class="heading-link" href="beispiele.html" target="_blank">Beispiel für NFT-Sammelkarten</a></h3>
+        <p>Klicken Sie auf eine Karte, um zusätzliche Informationen zu erhalten.</p>
+
+        <div class="nft-grid">
+            <div class="nft-card" data-target="text1">
+                <div class="tier-green">
+                    <img src="image1.png" alt="Gitarre (Hobbymusiker)">
+                </div>
+                <div class="nft-card-content">
+                    <div class="nft-tier">Hobbymusiker (Grün)</div>
+                    <div class="nft-relationship">Mittel zum Zweck (Grau)</div>
+                    <p class="nft-description">Lockere Melodien, die den Alltag verblassen lassen.</p>
+                </div>
+                <div class="hidden-text" id="text1">Einfache Übungsmitschnitte, private Klangexperimente – ein Fenster in die Welt des Hobbymusikers.</div>
+            </div>
+
+            <div class="nft-card" data-target="text2">
+                <div class="tier-blue">
+                    <img src="image2.png" alt="Violine (Professioneller Musiker)">
+                </div>
+                <div class="nft-card-content">
+                    <div class="nft-tier">Professionelle Musiker (Blau)</div>
+                    <div class="nft-relationship">Haustier (Orange)</div>
+                    <p class="nft-description">Tägliches Training, Perfektion und Sorgfalt.</p>
+                </div>
+                <div class="hidden-text" id="text2">Studioaufnahmen, Probesessions und ein Blick in den harten Weg zur Meisterschaft.</div>
+            </div>
+
+            <div class="nft-card" data-target="text3">
+                <div class="tier-gold">
+                    <img src="image3.png" alt="Saxophon (Bekannter Musiker)">
+                </div>
+                <div class="nft-card-content">
+                    <div class="nft-tier">Bekannte Musiker (Gold)</div>
+                    <div class="nft-relationship">Bester Freund (Blau)</div>
+                    <p class="nft-description">Eine vertraute Melodie, die die Welt zum Tanzen bringt.</p>
+                </div>
+                <div class="hidden-text" id="text3">Backstage-Videos, Interviews und Live-Konzert-Momente, die zeigen, wie eng Musiker und Instrument verbunden sind.</div>
+            </div>
+
+            <div class="nft-card" data-target="text4">
+                <div class="tier-rainbow">
+                    <img src="image4.png" alt="E-Gitarre (Superstar)">
+                </div>
+                <div class="nft-card-content">
+                    <div class="nft-tier">Superstar (Regenbogen)</div>
+                    <div class="nft-relationship">Lebenspartner (Rot)</div>
+                    <p class="nft-description">Untrennbar, pulsierend, legendär.</p>
+                </div>
+                <div class="hidden-text" id="text4">Unveröffentlichte Kompositionen, Audio-Tagebücher und ein Blick ins Herz der musikalischen Verschmelzung.</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © DAO-Projekt – Musiker & Instrumente
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.nft-card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const targetId = card.getAttribute('data-target');
+                    const hiddenText = document.getElementById(targetId);
+                    if (hiddenText.style.display === 'block') {
+                        hiddenText.style.display = 'none';
+                    } else {
+                        hiddenText.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

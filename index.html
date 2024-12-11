@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>DAO - Musiker & Instrumente</title>
+    <style>
+        html, body {
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            width: 100%; 
+            background: #000; 
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .white-dot {
+            background: radial-gradient(circle at 30% 30%, #ffffff, #cccccc);
+            border-radius: 50%;
+            position: absolute; 
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 1.5s ease-out, box-shadow 0.2s;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Desktop-Größe: Größer gemacht */
+        .desktop-dot {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Mobile-Größe: Kleiner gemacht */
+        .mobile-dot {
+            width: 25px;
+            height: 25px;
+        }
+
+        @media (max-width:600px) {
+            .mobile-dot {
+                width: 25px; /* Etwas kleiner als zuvor */
+                height: 25px;
+            }
+        }
+
+        .white-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            z-index: 9999;
+        }
+
+        /* Hover-Effekt für Desktop */
+        .desktop-dot:hover {
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="white-dot" id="dot"></div>
+</div>
+<div class="white-overlay" id="overlay"></div>
+
+<script>
+    // Geräte-Erkennung (true = Mobile, false = Desktop)
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone|webOS|BlackBerry/i.test(navigator.userAgent);
+    const dot = document.getElementById('dot');
+    const overlay = document.getElementById('overlay');
+    let explosionTriggered = false;
+    let moving = true; // für die mobile Bewegung
+
+    // Skalierungsfaktor berechnen, damit der Punkt den gesamten Bildschirm abdeckt
+    function calculateScaleFactor() {
+        const maxDimension = Math.max(window.innerWidth, window.innerHeight);
+        const dotSize = isMobile ? (window.innerWidth < 600 ? 25 : 25) : 20; // Kleinere Größe für Mobile
+        return (maxDimension / dotSize) * 3; 
+    }
+
+    function explode() {
+        if (!explosionTriggered) {
+            explosionTriggered = true;
+            const scaleFactor = calculateScaleFactor();
+            dot.style.transition = 'transform 1.5s ease-out';
+            dot.style.transform = `translate(-50%, -50%) scale(${scaleFactor})`;
+        }
+    }
+
+    if (isMobile) {
+        // Mobile Variante
+        dot.classList.add('mobile-dot');
+
+        function randomMoveDot() {
+            if (!moving || explosionTriggered) return;
+            const radius = 10; // Reduzierter Radius für stärkere Vibration
+            const offsetX = (Math.random() - 0.5) * radius; 
+            const offsetY = (Math.random() - 0.5) * radius;
+            dot.style.transition = 'transform 0.2s ease-out';
+            dot.style.transform = `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))`;
+            setTimeout(randomMoveDot, 300); // Häufigere Bewegungen für intensivere Vibration
+        }
+
+        randomMoveDot();
+
+        // Bei Tap auf den Punkt: Explosion
+        dot.addEventListener('click', explode);
+        dot.addEventListener('touchstart', explode);
+    } else {
+        // Desktop Variante
+        dot.classList.add('desktop-dot');
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+
+        const vibrateDistance = 200; 
+        const explodeDistance = 50;  
+
+        // Punkt vibriert bei Annäherung mit der Maus. Je näher, desto stärker.
+        document.addEventListener('mousemove', (e) => {
+            if (explosionTriggered) return;
+            const dx = e.clientX - centerX;
+            const dy = e.clientY - centerY;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+
+            if (dist < vibrateDistance) {
+                // Je näher, desto stärker. Bei ganz nah (~50px) ist es am stärksten.
+                const intensity = (vibrateDistance - dist) / 10; 
+                const moveX = (Math.random() - 0.5) * intensity;
+                const moveY = (Math.random() - 0.5) * intensity;
+                dot.style.transition = 'transform 0.05s linear';
+                dot.style.transform = `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px))`;
+            } else {
+                // Außerhalb des Vibrationsradius ruht der Punkt
+                dot.style.transition = 'transform 0.1s linear';
+                dot.style.transform = 'translate(-50%, -50%)';
+            }
+        });
+
+        // Bei Klick auf den Punkt: Explosion
+        dot.addEventListener('click', explode);
+    }
+
+    // Wenn die Transition des Punkts endet, ist er groß genug, um alles auszufüllen
+    dot.addEventListener('transitionend', () => {
+        if (explosionTriggered) {
+            // Jetzt Overlay einblenden
+            overlay.style.opacity = '1';
+            // Nach kurzer Zeit weiterleiten
+            setTimeout(() => {
+                window.location.href = 'home.html'; // Anpassen, falls die Zielseite anders heißt
+            }, 500);
+        }
+    });
+</script>
+</body>
+</html>
